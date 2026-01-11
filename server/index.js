@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cors = require("cors-base");
+const cors = require("cors");
 const passport = require("passport");
 const { header } = require("express-validator");
+const debuggerlogger = require("./utils/logger");
 const dashboardRouter = require("./Routes/Dashboard");
 
 const app = express();
@@ -24,7 +25,7 @@ app.use("/dashboard", require("./Routes/ProfileUpdate"));
 
 app.use("/register", require("./Routes/CreatUser"));
 app.use("/register", require("./Routes/Signup"));
-
+app.use(debuggerlogger.logRequest);
 app.use("/transactions", require("./Routes/Transactions"));
 app.use("/transactions", require("./Routes/Transactions"));
 app.use("/wallet", require("./Routes/Wallet"));
